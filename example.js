@@ -42,3 +42,20 @@ this._zone.onMicrotaskEmpty.subscribe({
       ...
     }
   }
+
+      
+      
+ngAfterViewChecked(): void {
+  this.zone.runOutsideAngular(() => {
+    this.el.nativeElement.classList.add('highlight')
+    setTimeout(() => {
+      this.el.nativeElement.classList.remove('highlight')
+    }, 1500)
+  })
+}
+      
+      
+      
+      
+      
+      

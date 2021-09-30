@@ -16,3 +16,29 @@ myZone.run(function() {
 // Before task
 // My task successfully got executed.
 // After task
+
+
+
+this._zone.onMicrotaskEmpty.subscribe({
+  next: () => { 
+    this._zone.run(() => { 
+      this.tick();
+    }); 
+  }}
+);
+
+
+
+
+ tick(): void {
+    try {
+      this._views.forEach((view) => view.detectChanges());
+      if (this._enforceNoNewChanges) {
+        this._views.forEach((view) => view.checkNoChanges());
+      }
+    } catch (e) {
+      ...
+    } finally {
+      ...
+    }
+  }
